@@ -1,5 +1,7 @@
 package assignment6;
 
+import java.util.Scanner;
+
 public final class Poly {
 
 	final int[] coeff;
@@ -118,6 +120,38 @@ public final class Poly {
 			}
 		}
 		return str;
+	}
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int[] iCoeff1={1,0,1};
+		int[] iPower1={1,2,3};
+		int[] iCoeff2={1,1,1};
+		int[] iPower2={1,2,3};
+		Poly p1=new Poly(iCoeff1,iPower1,iCoeff2,iPower2);
+		System.out.println("Enter Choice:\n1. Degree\n2. Add Polynomial\n3. Multiply Polynomial\n4. Exit");
+		int choice=sc.nextInt();
+		
+		switch(choice)
+		{
+			case 1:
+				int max=p1.Degree();
+				System.out.println(max);
+				break;
+			case 2:
+				String str=p1.AddPoly();
+				System.out.println(str);
+				break;
+			case 3:
+				String str1=p1.MultiPoly();
+				System.out.print(str1);
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:System.out.println("Wrong Choice");
+		sc.close();
+		}
 	}
 			
 }
