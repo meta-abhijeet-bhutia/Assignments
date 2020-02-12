@@ -1,6 +1,6 @@
 package matrix;
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Matrix {
 
@@ -43,15 +43,11 @@ public class Matrix {
 	 *         COMPLEXITY - O(n) where n => Number of nonzero Elements of Matrix
 	 */
 	public int[][] getTranspose() {
-		// ArrayList<Position> newMatrix = new ArrayList<Position>();
 		int[][] transpose = new int[this.cols][this.rows];
 		for (Position position : this.positions) {
-			// newMatrix.add(new
-			// Position(position.getCol(),position.getRow(),position.getValue()));
 			transpose[position.getCol()][position.getRow()] = position
 					.getValue();
 		}
-		// Matrix transpose = new Matrix(newMatrix,this.cols,this.rows);
 		return transpose;
 	}
 
@@ -70,7 +66,6 @@ public class Matrix {
 			return false;
 		for (Position position1 : this.positions) {
 			if (position1.getRow() == position1.getCol()) {
-				// count += 1;
 				diagonal += 1;
 			} else {
 				for (int j = this.positions.indexOf(position1) + 1; j < this.positions
@@ -105,8 +100,7 @@ public class Matrix {
 		if (firstMatrix.getRows() != secondMatrix.getRows()
 				|| firstMatrix.getCols() != secondMatrix.getCols())
 			throw new AssertionError();
-
-		// ArrayList<Position> newMatrix = new ArrayList<Position>();
+		
 		int[][] result = new int[firstMatrix.getRows()][firstMatrix.getCols()];
 		boolean flag;
 		boolean[] flagForM2 = new boolean[secondMatrix.getMatrix().size()];
@@ -120,17 +114,11 @@ public class Matrix {
 					result[position1.getRow()][position1.getCol()] = position1
 							.getValue() + position2.getValue();
 					flagForM2[secondMatrix.getMatrix().indexOf(position2)] = true;
-					// newMatrix.add(new
-					// Position(position1.getRow(),position1.getCol() ,
-					// position1.getValue() + position2.getValue()));
 					flag = false;
 					break;
 				}
 			}
 			if (flag) {
-				// newMatrix.add(new
-				// Position(position1.getRow(),position1.getCol() ,
-				// position1.getValue()));
 				result[position1.getRow()][position1.getCol()] = position1
 						.getValue();
 			}
@@ -142,13 +130,7 @@ public class Matrix {
 				result[position2.getRow()][position2.getCol()] = position2
 						.getValue();
 			}
-
-			// if(!newMatrix.contains(position2)) {
-			// newMatrix.add(position2);
-			// }
 		}
-		// return new Matrix(newMatrix ,
-		// firstMatrix.getRows(),firstMatrix.getCols());
 		return result;
 	}
 
@@ -190,8 +172,8 @@ public class Matrix {
 		}
 	}
 
-	// TO display a Matrix with given string s
-	public static void display(String s, int[][] matrix) {
+	// To display a Matrix with given string s
+	public void display(String s, int[][] matrix) {
 		System.out.println("\n" + s);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -200,5 +182,69 @@ public class Matrix {
 			System.out.println();
 		}
 	}
-
+public static void main(String args[])
+{
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter Size of Matrix:");
+	int size=sc.nextInt();
+	int[][] arr = new int[size][size];
+	int[][] brr = new int[size][size];
+	System.out.println("Enter Choice:\n1. Transpose\n2. Symmetrical\n3. Add two Matrix\n4. Multiply\n5. Exit");
+	int choice=sc.nextInt();
+	System.out.println("Enter values of first matrix");
+	for(int i=0;i<size;i++)
+	{
+		for(int j=0;j<size;j++)
+		{
+			arr[i][j]=sc.nextInt();
+		}
+		
+	}
+	Matrix s1 = new Matrix(arr);
+	
+	switch(choice)
+	{
+		case 1:
+			int[][] b = s1.getTranspose();
+			s1.display("Transpose", b);
+			break;
+		case 2:
+			boolean check = s1.isSymmetrical();
+			System.out.println(check);
+			break;
+		case 3:
+			System.out.println("Enter values of second matrix");
+			for(int i=0;i<size;i++)
+			{
+				for(int j=0;j<size;j++)
+				{
+					brr[i][j]=sc.nextInt();
+				}
+				
+			}
+			Matrix s2 = new Matrix(brr);
+			b =  Matrix.addTwoMatrix(s1, s2);
+			s1.display("Addition", b);
+			break;
+		case 4:
+			System.out.println("Enter values of second matrix");
+			for(int i=0;i<size;i++)
+			{
+				for(int j=0;j<size;j++)
+				{
+					brr[i][j]=sc.nextInt();
+				}
+				
+			}
+			Matrix s3 = new Matrix(brr);
+			b = Matrix.multiplyTwoMatrix(s1, s3);
+			s1.display("Multiplication", b);
+			break;
+		case 5:
+			System.exit(0);
+			break;
+		default:System.out.println("Wrong Choice");
+	}
+sc.close();
+}
 }
