@@ -67,7 +67,7 @@ public class SolveExpression {
 	
 	private boolean isOperator(String operator) {
 		switch (operator){
-		case "!": //Priyansh: New operator added in the list
+		case "!": // New operator added in the list
 		case "+":
 		case "-":
 		case "*":
@@ -95,7 +95,7 @@ public class SolveExpression {
 	private int getOperatorPrecedence(String operator){
 		int operatorPrecedence = 0;
 		switch (operator){
-		case "!": //Priyansh:  ! added with top precedence
+		case "!": //  ! added with top precedence
 			operatorPrecedence = 1;
 			break;
 		case "*":
@@ -134,13 +134,13 @@ public class SolveExpression {
 	 * @throw Exception if stacks are null.
 	 * @return solution of expression.
 	 */
-//Priyansh: name changed from createBinaryExpression to createExpression
+// name changed from createBinaryExpression to createExpression
 	private int createExpression(StackClass operatorStack, StackClass operandStack) throws Exception{
 		if ((operatorStack==null)||(operandStack==null)){
 			throw new Exception ("Null stacks");
 		}
 		
-		//Priyansh: Handling case for !
+		// Handling case for !
 		if("!".equals(operatorStack.peek())){
 			return solveUnaryExpression(operandStack.pop(), operatorStack.pop());
 		}
@@ -149,7 +149,7 @@ public class SolveExpression {
 		return (solveBinaryExpression(operandStack.pop(), operandStack.pop(), operatorStack.pop()));
 	}
 
-	//Priyansh: New function for unary operators added
+	// New function for unary operators added
 	/*
 	 * function to solve unary expression
 	 * @param operandString is the operand
