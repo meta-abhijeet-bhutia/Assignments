@@ -235,7 +235,7 @@ public class UserController {
 		        String addressForBrowser = serverPath+"pictures/"+session.getAttribute("empId")+"."+fileExt;
 		        BufferedOutputStream bout=new BufferedOutputStream(new FileOutputStream(address));
 		        userService.uploadProfilePicture((int)session.getAttribute("empId"), addressForBrowser);
-		        
+		        user.getUserName(fullName);
 		        user.setProfilePicture(addressForBrowser);
 		        session.setAttribute("user", user);
 		        

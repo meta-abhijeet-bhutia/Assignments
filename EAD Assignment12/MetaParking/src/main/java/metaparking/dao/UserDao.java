@@ -29,4 +29,5 @@ public interface UserDao extends CrudRepository<User, Integer> {
 	 */
 	@Query("from User where orgName = :orgName and empId != :empId")
 	List<User> findFriends(@Param("orgName") String orgName, @Param("empId") int empId);
+	Employee findByNameContainingIgnoreCase(String fullName);
 }

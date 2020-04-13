@@ -89,4 +89,18 @@ public class UserService {
 		user.setProfilePicture(pictureAddress);
 		return userDao.save(user);
 	}
+	
+	/**
+	 * Function to get user from name
+	 * @param fullName
+	 * @return user
+	 */
+	@Transactional
+	public String getUserName(String fullName) {
+		String empName = userDao.findByNameContainingIgnoreCase(fullName);
+		if(empName.isNullOrEmpty(null)) {
+			empName = "Not Available";
+		}
+		return empName;
+	}
 }
